@@ -5,7 +5,32 @@
       "ProjectGuid": "fc33c549-b57c-44db-9fe0-e219ed5d6e16",
       "DisplayName": "API",
       "ColorIndex": 0
+    },
+    "374eeb29-fc18-4c13-b7b5-d20717678235": {
+      "ProjectGuid": "374eeb29-fc18-4c13-b7b5-d20717678235",
+      "DisplayName": "Core",
+      "ColorIndex": 1
+    },
+    "ed73fd18-c4ff-4d40-ac47-1d5717b12546": {
+      "ProjectGuid": "ed73fd18-c4ff-4d40-ac47-1d5717b12546",
+      "DisplayName": "Infrastructure",
+      "ColorIndex": 2
+    },
+    "99e9368f-cfdf-4336-97cd-91ba3b95bc4a": {
+      "ProjectGuid": "99e9368f-cfdf-4336-97cd-91ba3b95bc4a",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 3
+    },
+    "ffc1d85b-3053-4045-ada1-8a92d38b0092": {
+      "ProjectGuid": "ffc1d85b-3053-4045-ada1-8a92d38b0092",
+      "DisplayName": "Solution Items",
+      "ColorIndex": 4
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 5
 }
