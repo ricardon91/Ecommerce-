@@ -5,6 +5,7 @@ import { Pagination } from '../models/pagination';
 import { ProductType } from '../models/productType';
 import { map } from 'rxjs/operators'
 import { ShopParams } from '../models/shopParams';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,10 @@ export class ShopService {
           return response.body;
         })
       );
+  }
+
+  getProduct(id: number){
+    return this.http.get<Product>(this.baseUrl + 'products/' + id);
   }
 
   getBrands() {
