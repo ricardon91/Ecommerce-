@@ -3,7 +3,7 @@ import { Brand } from '../shared/models/brand';
 import { Product } from '../shared/models/product';
 import { ProductType } from '../shared/models/productType';
 import { ShopParams } from '../shared/models/shopParams';
-import { ShopService } from '../shared/service/shop.service';
+import { ShopService } from '../shared/services/shop.service';
 
 @Component({
   selector: 'app-shop',
@@ -11,7 +11,7 @@ import { ShopService } from '../shared/service/shop.service';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  @ViewChild('search', {static: true}) searchTerm: ElementRef
+  @ViewChild('search', {static: false}) searchTerm: ElementRef
   products: Product[];
   brands: Brand[];
   types: ProductType[];
