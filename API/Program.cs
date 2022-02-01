@@ -1,7 +1,10 @@
 using API.Extensions;
 using API.Helpers;
 using API.Middleware;
+using Core.Entities.Identity;
 using Infrastructure.Data;
+using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
 
@@ -12,6 +15,7 @@ builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<StoreContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityConnection")));
 //Redis is a database in memory
 builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
 {
@@ -19,6 +23,7 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(c =>
     return ConnectionMultiplexer.Connect(configuration);
 });
 builder.Services.AddApplicationServices();
+builder.Services.AddIdentityServices(builder.Configuration);
 builder.Services.AddSwaggerDocumentation();
 builder.Services.AddCors(option =>
 {
@@ -42,6 +47,8 @@ app.UseStaticFiles();
 
 app.UseCors("CorsPolicy");
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.UseSwaggerDocumentation();
@@ -57,6 +64,11 @@ try
     var context = services.GetRequiredService<StoreContext>();
     await context.Database.MigrateAsync();
     await StoreContextSeed.SeedAsync(context, loggerFactory);
+
+    var userManager = services.GetRequiredService<UserManager<AppUser>>();
+    var identityContext = services.GetRequiredService<AppIdentityDbContext>();
+    await identityContext.Database.MigrateAsync();
+    await AppIdentityDbContextSeed.SeedUserAsync(userManager);
 }
 catch (Exception ex)
 {
